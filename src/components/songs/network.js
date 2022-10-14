@@ -1,9 +1,10 @@
 import { Router } from "express";
 import * as Controller from "./controller";
 
-const testRouter = Router();
+const songRouter = Router();
 
-testRouter.route("/").get(Controller.findAll);
-testRouter.route("/").post(Controller.create);
+songRouter.route("/").get(Controller.findAllSongs);
+songRouter.route("/").post(Controller.createSong);
+songRouter.route("/:id").get(Controller.findSongById)
 
-export default testRouter;
+export default songRouter;
