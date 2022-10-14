@@ -6,31 +6,34 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model User {
   id           Int      @id @default(autoincrement())
+  name         String
   email        String   @unique
   password     String
-  name         String?
-  phone_number String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  music Music[]
 
   @@map("users")
 }
 
-model Character {
+model Music {
   id         Int       @id @default(autoincrement())
   name       String
-  date_birth DateTime?
-  image      String?
-  weight     Float?
-  history    String?
+  artist     String
+  album      String?
+  year       String?
+  genere     String?
+  duration   Int
+  user User[]
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 
-  @@map("characters")
+  @@map("music")
 }
+
